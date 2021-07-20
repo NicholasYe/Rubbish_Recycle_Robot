@@ -7,9 +7,9 @@ SoftwareSerial MyBlue(16, 17); // RX | TX
 int r;
 
 //电机PWM，依次对应 LF,LB,RB,RF  L-Left R-Right F-Front B-Back
-int M_PWM[4] = {9, 10, 11, 12};          
-//控制电机正反转，依次对应 LF,LB,RB,RF,(一个电机需要两个，对应IN1,IN2)         
-int M_Dir[8] = {22, 23, 24, 25, 26, 27, 28, 29};  
+int M_PWM[4] = {9, 10, 11, 12};
+//控制电机正反转，依次对应 LF,LB,RB,RF,(一个电机需要两个，对应IN1,IN2)
+int M_Dir[8] = {22, 23, 24, 25, 26, 27, 28, 29};
 
 //PWM的全局变量
 int v_pwm[4] = {120, 120, 120, 120};
