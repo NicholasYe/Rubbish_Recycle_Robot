@@ -1,7 +1,9 @@
 #include <Arduino.h>
-
+#include <Servo.h>
 //蓝牙模块定义
 #include <SoftwareSerial.h>
+Servo servo1;
+Servo servo2;
 SoftwareSerial MyBlue(16, 17); // RX | TX
 //蓝牙接收值
 int r;
@@ -15,6 +17,20 @@ int M_Dir[8] = {22, 23, 24, 25, 26, 27, 28, 29};
 int v_pwm[4] = {120, 120, 120, 120};
 //正反转的全局变量
 int v_dir[4] = {1, 1, 1, 1};
+void pick()
+{
+  servo1.write(100);
+  delay(15);
+  servo2.write(100);
+  delay(15);
+}
+void Throw_Rubbish()
+{
+  servo1.write(100);
+  delay(15);
+  servo2.write(100);
+  delay(15);
+}
 
 /*
  * 函数作用：控制一路电机的速度和正反转
@@ -154,6 +170,10 @@ void Turn_Right()
 //单遍程序
 void setup()
 {
+  servo1.attach(44);
+  servo2.attach(45);
+  servo1.write(100);
+  servo2.write(100);
   Serial3.begin(9600); //开启串口通信,调试用
   Serial.begin(9600);
   Dir_Init();
@@ -192,6 +212,12 @@ void loop()
     break;
   case 55:
     Turn_Left();
+    break;
+  case 56:
+    pick();
+    break;
+  case 57:
+    Throw_Rubbish();
     break;
   }
 }
