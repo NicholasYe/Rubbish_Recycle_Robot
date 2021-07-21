@@ -6,7 +6,7 @@
 Servo servo1;
 Servo servo2;
 //蓝牙模块定义
-SoftwareSerial MyBlue(18, 19); // RX | TX
+SoftwareSerial MyBlue(17, 16); // RX | TX
 //蓝牙接收值
 int r;
 
