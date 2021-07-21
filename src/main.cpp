@@ -1,9 +1,11 @@
 #include <Arduino.h>
 #include <Servo.h>
-//蓝牙模块定义
 #include <SoftwareSerial.h>
+
+//舵机模块定义
 Servo servo1;
 Servo servo2;
+//蓝牙模块定义
 SoftwareSerial MyBlue(16, 17); // RX | TX
 //蓝牙接收值
 int r;
@@ -17,6 +19,7 @@ int M_Dir[8] = {22, 23, 24, 25, 26, 27, 28, 29};
 int v_pwm[4] = {120, 120, 120, 120};
 //正反转的全局变量
 int v_dir[4] = {1, 1, 1, 1};
+
 void pick()
 {
   servo1.write(100);
@@ -24,6 +27,7 @@ void pick()
   servo2.write(100);
   delay(15);
 }
+
 void Throw_Rubbish()
 {
   servo1.write(100);
