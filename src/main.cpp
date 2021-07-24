@@ -1,25 +1,20 @@
 #include <Arduino.h>
-// 引脚定义
 #include <Servo.h>
 #include <SoftwareSerial.h>
-SoftwareSerial MyBlue(16, 17); // RX | TX
+
+//舵机控制代码
 Servo servo1;
 Servo servo2;
+
+//蓝牙初始化
 int r;
+SoftwareSerial MyBlue(16, 17); // RX | TX
+
+//电机控制代码
 int M_PWM[4] = {9, 10, 11, 12}; //电机PWM，依次对应 LF,LB,RB,RF  L-Left R-Right F-Front B-Back
 int M_Dir[8] = {22, 23, 24, 25, 26, 27, 29, 28}; //控制电机正反转，依次对应 LF,LB,RB,RF,(一个电机需要两个，对应IN1,IN2)
-int Switch[8] = {46, 47, 48, 49, 50, 51, 52, 53}; //光电开关 依次为 F,L,B,R  LF,LB,RB,RF
-int Gray[2] = {A0, A2}; // 数组为int,与Arduino底层有关，不是错误 F,L,B,R
 int v_pwm[4] = {120, 120, 120, 120};
 int v_dir[4] = {1, 1, 1, 1};
-void hei_ren_tai_guan();
-#define N 250000  //tone时间
-#define pin 18
-#define m 250  //delay时间
-int f[3][7] = {{392, 440, 494}, {523, 587, 659, 698, 784, 880, 988}, {1047}}; //频率，低（音符）5,6,7，中1,2,3,4,5,6,7，高1
-int i;
-// 台上台下状态值
-bool on_stage;
 
 /*加一个备用方案
    函数作用：控制一路电机的速度和正反转
@@ -151,6 +146,10 @@ void Slow() {
   Go_PWM();
 }
 
+/*
+   函数作用：捡垃圾
+   返回值：无
+*/
 void zhuan1(int b)
 {
   int a = servo1.read();
@@ -166,6 +165,7 @@ void zhuan1(int b)
     }
   else return;
 }
+
 void zhuan2(int b)
 {
   int a = servo2.read();
@@ -208,6 +208,7 @@ void Throw_Rubbish()
   zhuan2(60);
 }
 
+//初始化函数
 void setup() {
   servo1.attach(44);
   servo2.attach(45);
@@ -218,6 +219,7 @@ void setup() {
   Dir_Init();
 }
 
+//循环函数
 void loop() {
   if (Serial3.available())
   {
